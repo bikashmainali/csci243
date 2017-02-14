@@ -157,7 +157,7 @@ int main(void)
 			row %= 20;
 			col = rand();
 			col %= 20;
-			life[row][col] == '*';
+			life[row][col] = '*';
 		 }
 		 
 		 for(row = 0; row<20; row++)
@@ -165,7 +165,7 @@ int main(void)
 			for(col = 0; col<20; col++)
 			{
 			   if(life[row][col] != '*')
-			   	life[row][col] == ' ';
+			   	life[row][col] = ' ';
 			}
 		 }
 			  
