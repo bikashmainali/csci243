@@ -24,7 +24,7 @@
 	  printf("\n\t..Welcome to the Game of life..\n");
    }
 	
-	void survivalRule(char life[][20])
+	void survivalRule(int size, char life[][size])
    {
 	  int row, col;
 	  int neighbors = 0;
@@ -60,7 +60,7 @@
 	  return;
    }
 	
-	void birthRule(char life[][20] ) 
+	void birthRule(int size, char life[][size])
    {
 	  int row, col;
 	  int neighbors = 0;
@@ -97,7 +97,7 @@
 	  return;
    }
 	
-	void deathRule(char life[][20])
+	void deathRule(int size, char life[][size])
    {
 	  int row, col;
 	  int neighbors = 0;
@@ -137,12 +137,12 @@
 int main(void)
    {
 	  char life[20][20];
-	  int orgs;//, gens;
+	  int orgs;
 	  int i, row, col;
 	  int count = 0;
 	 // int x = 19;
 	 // int y = 19;
-	//  char ans;
+	 // char ans;
    	
 	  header();
 
@@ -178,10 +178,10 @@ int main(void)
 			  puts(" ");
 		  }
 			 
-		 while ( count<= 100 ) {
-			birthRule(life);
-			survivalRule(life);
-			deathRule(life);
+		 while ( count<= 10 ) {
+			birthRule(20, life);
+			survivalRule(20, life);
+			deathRule(20, life);
 				for(row = 0; row<20; row++)
 		 	{
 				  for(col = 0; col<20; col++)
