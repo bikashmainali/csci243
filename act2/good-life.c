@@ -1,5 +1,5 @@
 /// http://www.dreamincode.net/forums/topic/55572-conways-game-of-life/
-/// downloaded by copy-paste on 8/19/mdim15 and modified to use an infinite loop.
+/// downloaded by copy-paste on 8/19/2015 and modified to use an infinite loop.
 ///
 /// This code needs serious work in these areas:
 /// <ol>
@@ -19,181 +19,183 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void header(void) /*function for program header*/
-{
-	printf("\n\t..Welcome to the Game of life..\n");
-}
-
-void survivalRule(int rowsize, int colsize, int size, char life[][size])
-{
-	int row, col;
-	int neighbors = 0;
-	for(row = 0; row<rowsize; row++)
-	{
-		for(col = 0; col<colsize; col++)
-		{
+	void header(void) /*function for program header*/
+   {
+	  printf("\n\t..Welcome to the Game of life..\n");
+   }
+	
+	void survivalRule(char life[][20])
+   {
+	  int row, col;
+	  int neighbors = 0;
+	  for(row = 1; row<19; row++)
+	  {
+		 for(col = 1; col<19; col++)
+		 {
 			if(life[row][col] == '*')
 			{
-				if(life[row - 1][col - 1] == '*')
-					++neighbors;
-				if(life[row - 1][col] == '*')
-					++neighbors;
-				if(life[row - 1][col + 1] == '*')
-					++neighbors;
-				if(life[row][col - 1] == '*')
-					++neighbors;
-				if(life[row][col + 1] == '*')
-					++neighbors;
-				if(life[row + 1][col - 1] == '*')
-					++neighbors;
-				if(life[row + 1][col] == '*')
-					++neighbors;
-				if(life[row + 1][col + 1] == '*')
-					++neighbors;
-				if(neighbors == 2 || neighbors == 3)
-				{
-					life[row][col] = '*';
-				}
+			   if(life[row - 1][col - 1] == '*')
+				  ++neighbors;
+			   if(life[row - 1][col] == '*')
+				  ++neighbors;
+			   if(life[row - 1][col + 1] == '*')
+				  ++neighbors;
+			   if(life[row][col - 1] == '*')
+				  ++neighbors;
+			   if(life[row][col + 1] == '*')
+				  ++neighbors;
+			   if(life[row + 1][col - 1] == '*')
+				  ++neighbors;
+			   if(life[row + 1][col] == '*')
+				  ++neighbors;
+			   if(life[row + 1][col + 1] == '*')
+				  ++neighbors;
+			   if(neighbors == 2 || neighbors == 3)
+			   {
+				  life[row][col] = '*';
+			   }
 			}
-		}
-	}
-	return;
-}
-
-void birthRule(int rowsize, int colsize, int size, char life[][size])
-{
-	int row, col;
-	int neighbors = 0;
-	for(row = 0; row<rowsize; row++)
-	{
-		for(col = 0; col<colsize; col++)
-		{
+		 }
+	  }
+	  return;
+   }
+	
+	void birthRule(char life[][20] ) 
+   {
+	  int row, col;
+	  int neighbors = 0;
+	  for(row = 1; row<19; row++)
+	  {
+		 for(col = 1; col<19; col++)
+		 {
 			if(life[row][col]== ' ')
 			{
-				if(life[row - 1][col - 1] == '*')
-					neighbors++;
-				if(life[row - 1][col] == '*')
-					neighbors++;
-				if(life[row - 1][col + 1] == '*')
-					neighbors++;
-				if(life[row][col - 1] == '*')
-					neighbors++;
-				if(life[row][col + 1] == '*')
-					neighbors++;
-				if(life[row + 1][col - 1] == '*')
-					neighbors++;
-				if(life[row + 1][col] == '*')
-					neighbors++;
-				if(life[row + 1][col + 1] == '*')
-					neighbors++;
-				if(neighbors == 3)
-				{
-					life[row][col] = '*';
-				}
+			   if(life[row - 1][col - 1] == '*')
+				  neighbors++;
+			   if(life[row - 1][col] == '*')
+				  neighbors++;
+			   if(life[row - 1][col + 1] == '*')
+				  neighbors++;
+			   if(life[row][col - 1] == '*')
+				  neighbors++;
+			   if(life[row][col + 1] == '*')
+				  neighbors++;
+			   if(life[row + 1][col - 1] == '*')
+				  neighbors++;
+			   if(life[row + 1][col] == '*')
+				  neighbors++;
+			   if(life[row + 1][col + 1] == '*')
+				  neighbors++;
+			   if(neighbors == 3)
+			   {
+			   	life[row][col] = '*';
+			   }
 			}
-		}
-	}
+		 }
+	  }
 
-	return;
-}
-
-void deathRule(int rowsize, int colsize, int size, char life[][size])
-{
-	int row , col;
-	int neighbors = 0;
-	for(row = 0; row<rowsize; row++)
-	{
-		for(col = 0; col<colsize; col++)
-		{
+	  return;
+   }
+	
+	void deathRule(char life[][20])
+   {
+	  int row, col;
+	  int neighbors = 0;
+	  for(row = 1; row<19; row++)
+	  {
+		 for(col = 1; col<19; col++)
+		 {
 			if(life[row][col] == '*')
 			{
-				if(life[row - 1][col - 1] == '*')
-					neighbors++;
-				if(life[row - 1][col] == '*')
-					neighbors++;
-				if(life[row - 1][col + 1] == '*')
-					neighbors++;
-				if(life[row][col - 1] == '*')
-					neighbors++;
-				if(life[row][col + 1] == '*')
-					neighbors++;
-				if(life[row + 1][col - 1] == '*')
-					neighbors++;
-				if(life[row + 1][col] == '*')
-					neighbors++;
-				if(life[row + 1][col + 1] == '*')
-					neighbors++;
-				if(neighbors < 2 || neighbors > 4)
-				{
-					life[row][col] = ' ';
-				}
+			   if(life[row - 1][col - 1] == '*')
+				  neighbors++;
+			   if(life[row - 1][col] == '*')
+				  neighbors++;
+			   if(life[row - 1][col + 1] == '*')
+				  neighbors++;
+			   if(life[row][col - 1] == '*')
+				  neighbors++;
+			   if(life[row][col + 1] == '*')
+				  neighbors++;
+			   if(life[row + 1][col - 1] == '*')
+				  neighbors++;
+			   if(life[row + 1][col] == '*')
+				  neighbors++;
+			   if(life[row + 1][col + 1] == '*')
+				  neighbors++;
+			   if(neighbors < 2 || neighbors > 4)
+			   {
+				  life[row][col] = ' ';
+			   }
 			}
-		}
-	}
-	return;
-}
+		 }
+	  }
+	  return;
+   }
 
-
+   	
 int main(void)
-{
-	int mdim = 20;
-	char life[mdim][10];
-	int orgs;//, gens;
-	int i,row, col; // a, b
-	int count = 0;
-//	int x = 19;
-//	int y = 19;
-//	char ans;
+   {
+	  char life[20][20];
+	  int orgs;//, gens;
+	  int i, row, col;
+	  int count = 0;
+	 // int x = 19;
+	 // int y = 19;
+	//  char ans;
+   	
+	  header();
 
-	header();
-
-	printf("\nPlease enter the initial number of organisms: ");
-	scanf("%i", &orgs);
-
-	srand( 31 );
-
-	for(i = 0; i<orgs; i++)
-	{
-		row = rand();
-		row %= mdim;
-		col = rand();
-		col %= mdim;
-		life[row][col] = '*';
-	}
-
-	for(row = 0; row<mdim; row++)
-	{
-		for(col = 0; col<mdim; col++)
-		{
-			if(life[row][col] != '*')
-				life[row][col] = ' ';
-		}
-	}
-
-	for(row = 0; row<mdim; row++)
-	{
-		for(col = 0; col<mdim; col++)
-		{
-			printf("%c", life[row][col]);
-		}
-		puts(" ");
-	}
-
-	while ( count<=10 ) {
-		birthRule(20, 10,mdim, life);
-		survivalRule(20,10,mdim,life);
-		deathRule(20,10,mdim,life);
-		for(row = 0; row<mdim; row++)
-		{
-			for(col = 0; col<mdim; col++)
+		 printf("\nPlease enter the initial number of organisms: ");
+		 scanf("%i", &orgs);
+	  
+		 srand( 31 );
+			  
+		 for(i = 0; i<orgs; i++)
+		 {
+			row = rand();
+			row %= 20;
+			col = rand();
+			col %= 20;
+			life[row][col] = '*';
+		 }
+		 
+		 for(row = 0; row<20; row++)
+		 {
+			for(col = 0; col<20; col++)
 			{
-				printf("%c", life[row][col]);
+			   if(life[row][col] != '*')
+			   	life[row][col] = ' ';
 			}
-			puts(" ");
-		}
-		printf("\ngeneration: %d\n", count);
-		count++;
-	}
-	return 0;
-}
+		 }
+			  
+		 for(row = 0; row<20; row++)
+		 {
+			  for(col = 0; col<20; col++)
+			  {
+				  printf("%c", life[row][col]);
+			  }
+			  puts(" ");
+		  }
+			 
+		 while ( count<= 100 ) {
+			birthRule(life);
+			survivalRule(life);
+			deathRule(life);
+				for(row = 0; row<20; row++)
+		 	{
+				  for(col = 0; col<20; col++)
+				  {
+					  printf("%c", life[row][col]);
 
+				  }
+				  puts(" ");
+		 	}
+		  printf("\ngeneration: %d\n", count);
+			count++;
+		 }
+		  
+   	
+	  return 0;
+   }
+			
